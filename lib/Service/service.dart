@@ -1,17 +1,16 @@
 import 'dart:convert';
 
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import 'package:weatherapp/model/weathermodel.dart';
 
 class WeatherService {
-  // final String apiKey = "5281de92950ab4608ddad6d0ad6014e7";
-
   Future<WeatherData?> fetchWeather({
     required double lat,
     required double lon,
   }) async {
     final url = Uri.parse(
-      "https://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lon&appid=5281de92950ab4608ddad6d0ad6014e7",
+      "https://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lon&appid=${dotenv.env['API_KEY']}",
     );
 
     try {
